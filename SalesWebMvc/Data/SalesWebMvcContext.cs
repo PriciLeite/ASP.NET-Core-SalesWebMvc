@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using SalesWebMvc.Models.Departament;
+using SalesWebMvc.Models;
 
 namespace SalesWebMvc.Data
 {
@@ -14,6 +14,9 @@ namespace SalesWebMvc.Data
         {
         }
 
-        public DbSet<SalesWebMvc.Models.Departament.Departament> Departament { get; set; } = default!;
+        public DbSet<Departament> Departament { get; set; } = default!;
+        public DbSet<Seller> Seller { get; set; } = default!;
+        public DbSet<SalesRecord> SalesRecord { get; set; }
+    
     }
 }
