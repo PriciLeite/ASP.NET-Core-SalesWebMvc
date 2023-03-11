@@ -4,7 +4,7 @@
 
 namespace SalesWebMvc.Migrations
 {
-    public partial class UpdateEmailSeller : Migration
+    public partial class SellersDepartamentId : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
