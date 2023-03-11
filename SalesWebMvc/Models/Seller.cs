@@ -7,26 +7,31 @@ namespace SalesWebMvc.Models
 {
     public class Seller
     {
+       
+
         public int Id { get; set; }
-        public string Name { get; set; }
-        public DateTime BithDate { get; set; }
+        public string Name { get; set; }       
+        public DateTime BirthDate { get; set; }
         public double BaseSalary { get; set; }
         public Departament Departament { get; set; }
         public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
+        public string Email { get; set; }
 
         public Seller()
         {
         }
 
-        public Seller(int id, string name, string v, DateTime bithDate, double baseSalary, Departament departament)
+        public Seller(int id, string name, DateTime birthDate, double baseSalary, Departament departament, string email)
         {
             Id = id;
-            Name = name;
-            BithDate = bithDate;
+            Name = name;           
+            BirthDate = birthDate;
             BaseSalary = baseSalary;
-            Departament = departament;          
+            Departament = departament;
+            Email = email;
         }
 
+       
 
         public void AddSales(SalesRecord sr)
         {
