@@ -1,0 +1,41 @@
+﻿@model SalesWebMvc.Models.Seller
+@{
+    ViewData["Title"] = "Cadastro de Vendedor(a):";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-5">
+        <form asp-action="Create">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Nome</label>
+                <input asp-for="Name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label">Email</label>
+                <input asp-for="Email" class="form-control" />
+            </div>            
+            <div class="form-group">
+                <label asp-for="BirthDate" class="control-label">Aniversário</label>
+                <input asp-for="BirthDate" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="BaseSalary" class="control-label">Salário</label>
+                <input asp-for="BaseSalary" class="form-control" />
+            </div>            
+                      
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

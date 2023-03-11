@@ -1,17 +1,19 @@
 ﻿@model IEnumerable<SalesWebMvc.Models.Seller>
 
-
 @{
-    ViewData["Title"] = "Sellers";
+    ViewData["Title"] = "Vendedor(a)";
 }
+
+<h1>Verndedor(a)</h1>
 
 
 <p>
-    <a asp-action="Create" class="btn btn-default">Create New</a>
+    <a asp-action="Create" class="btn btn-default">Novo</a>
 </p>
 
 <table class="table table-striped table-hover">
     <thead>
+
         <tr class="success">
             <th>
                 @Html.DisplayNameFor(model => model.Name)
@@ -28,6 +30,7 @@
             <th></th>
         </tr>
     </thead>
+    </thead>
     <tbody>
         @foreach (var item in Model)
         {
@@ -41,9 +44,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.BirthDate)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.BaseSalary)
-                </td>
+                <th>
+                    @Html.DisplayNameFor(model => model.BaseSalary)
+                </th>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a>
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a>
