@@ -1,8 +1,21 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
 <div class="text-center">
-    <h1 class="display-4">Bem Vindo!</h1>
-    <p>Sistema de Gestão.</p>
+    <thead>
+        <tr>
+            <h1 class="display-4">Bem Vindo!</h1>            
+            @DateTime.Now.DayOfWeek
+            <br/>
+            @DateTime.Now            
+        </tr>
+    </thead>
 </div>
