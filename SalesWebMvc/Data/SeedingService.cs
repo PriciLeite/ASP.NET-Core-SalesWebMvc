@@ -7,29 +7,24 @@ namespace SalesWebMvc.Data
     {
         private SalesWebMvcContext _context;
 
-
         public SeedingService(SalesWebMvcContext context)
         {
             _context = context;
         }
 
-
         public void Seed()
         {
             if (_context.Departament.Any() ||
-                _context.Seller.Any() ||        //verifica se existe dados no BD;
+                _context.Seller.Any() ||
                 _context.SalesRecord.Any())
             {
-                return;
+                return; // DB has been seeded
             }
-
 
             Departament d1 = new Departament(1, "Computers");
             Departament d2 = new Departament(2, "Electronics");
             Departament d3 = new Departament(3, "Fashion");
             Departament d4 = new Departament(4, "Books");
-
-
 
             Seller s1 = new Seller(1, "Bob Brown", "bob@gmail.com", new DateTime(1998, 4, 21), 1000.0, d1);
             Seller s2 = new Seller(2, "Maria Green", "maria@gmail.com", new DateTime(1979, 12, 31), 3500.0, d2);
@@ -83,3 +78,4 @@ namespace SalesWebMvc.Data
         }
     }
 }
+

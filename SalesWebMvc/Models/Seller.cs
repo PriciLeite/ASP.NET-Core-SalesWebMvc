@@ -22,7 +22,7 @@ namespace SalesWebMvc.Models
         {
         }
 
-        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Departament departament, int v)
+        public Seller(int id, string name, string email, DateTime birthDate, double baseSalary, Departament departament)
         {
             Id = id;
             Name = name;
