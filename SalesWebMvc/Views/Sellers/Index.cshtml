@@ -5,12 +5,12 @@
 }
 
 <hr />
-<h3>Verndedor(a)</h3>
+<h3>Vendedor(a)</h3>
 <p>
     <a asp-action="Create" class="btn btn-default">Cadastrar Novo</a>
 </p>
-<hr />
-<div class="row">
+
+<div class="alert alert-dismissible alert-warning">
     <table class="table table-striped table-hover">
         <thead>
             <tr class="table-primary">
@@ -28,14 +28,13 @@
                 </th>
                 <th class="position-relative"
                     <h5>Cofigurações:</h5>
-                </th>
-                <th></th>
+                </th>                
             </tr>
         </thead>
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
+                <tr>                    
                     <td>
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
@@ -49,9 +48,9 @@
                         @Html.DisplayFor(modelItem => item.BaseSalary)
                     </td>
                     <td>
-                        <a class="badge rounded-pill" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
-                        <a class="badge rounded-pill" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
-                        <a class="badge rounded-pill" asp-action="Delete" asp-route-id="@item.Id">Deletar</a> 
+                        <a class="badge rounded-pill bg-secondary" asp-action="Edit" asp-route-id="@item.Id">Editar</a>
+                        <a class="badge rounded-pill bg-secondary" asp-action="Details" asp-route-id="@item.Id">Detalhes</a>
+                        <a class="badge rounded-pill bg-secondary" asp-action="Delete" asp-route-id="@item.Id">Deletar</a>
 
                     </td>
                 </tr>

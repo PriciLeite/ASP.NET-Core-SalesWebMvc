@@ -62,7 +62,21 @@ namespace SalesWebMvc.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-
+        public IActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var obj = _selerService.FindbyId(id.Value); //pega o obj.
+            if (obj == null)
+            {
+                return NotFound();
+            }
+            return View(obj);
+        
+        
+        }
 
 
 
