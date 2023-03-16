@@ -4,6 +4,8 @@ using SalesWebMvc.Models.ViewModels;
 using SalesWebMvc.Services;
 using System.Security.Cryptography.X509Certificates;
 using SalesWebMvc.Services.Exceptions;
+using System.Diagnostics;
+using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 
 namespace SalesWebMvc.Controllers
 {
@@ -46,12 +48,13 @@ namespace SalesWebMvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new {message = "Id NÃO FORNECIDO!"});
             }
             var obj = _selerService.FindbyId(id.Value); //pega o obj.
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id INEXISTENTE!" });
+
             }
             return View(obj);
         }
@@ -68,12 +71,14 @@ namespace SalesWebMvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id NÃO FORNECIDO!" });
+
             }
             var obj = _selerService.FindbyId(id.Value); //pega o obj.
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id INEXISTENTE!" });
+
             }
             return View(obj);
         }
@@ -82,12 +87,14 @@ namespace SalesWebMvc.Controllers
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id NÃO FORNECIDO!" });
+
             }
             var obj = _selerService.FindbyId(id.Value);
             if (obj == null)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new { message = "Id INEXISTENTE!" });
+
             }
             List<Departament> departaments = _departamentService.FindAll();
             SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departaments = departaments };
@@ -101,27 +108,43 @@ namespace SalesWebMvc.Controllers
         {
             if (id != seller.Id)
             {
-                return BadRequest();
+                return RedirectToAction(nameof(Error), new { message = "Id NÃO CORRESPONDE AO VENDEDOR(A)!" });
+
             }
             try
             {
                 _selerService.Update(seller);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundException)
+            catch (NotFoundException e)
             {
-                return NotFound();
+                return RedirectToAction(nameof(Error), new {message = e.Message });
+
             }
-            catch(DbConcurrencyException)
+            catch (DbConcurrencyException e)
             {
-                return BadRequest();
-            }       
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+
+            }
         
+        }
         
+
+        public IActionResult Error(string message)
+        {
+            var viewModel = new ErrorViewModel
+            {
+                Message = message,
+                RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier
+            };
+            return View(viewModel);
         }
 
 
 
+    
+    
+    
     }
 
 
