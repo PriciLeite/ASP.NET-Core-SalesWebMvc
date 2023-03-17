@@ -1,4 +1,5 @@
-﻿
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using SalesWebMvc.Data;
@@ -11,7 +12,6 @@ builder.Services.AddDbContext<SalesWebMvcContext>(options =>
     options.UseMySql(builder.Configuration.GetConnectionString("SalesWebMvcContext"),
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("SalesWebMvcContext")),
     builder => builder.MigrationsAssembly("SalesWebMvc")));
-
 
 
 
