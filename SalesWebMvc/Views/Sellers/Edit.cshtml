@@ -14,18 +14,22 @@
             <div class="form-group">
                 <label asp-for="Seller.Name" class="control-label">Nome</label>
                 <input asp-for="Seller.Name" class="form-control" />
+                <span asp-validation-for="Seller.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Seller.Email" class="control-label">Email</label>
                 <input asp-for="Seller.Email" class="form-control" />
+                <span asp-validation-for="Seller.Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Seller.BirthDate" class="control-label">Aniversário</label>
                 <input asp-for="Seller.BirthDate" class="form-control" />
+                <span asp-validation-for="Seller.BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Seller.BaseSalary" class="control-label">Salário</label>
                 <input asp-for="Seller.BaseSalary" class="form-control" />
+                <span asp-validation-for="Seller.BaseSalary" class="text-danger"></span>
             </div>
             <div class="form-group"
                 <label asp-for="Seller.DepartamentId" class="form-label mt-4">Departamento</label>
@@ -33,7 +37,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Editar" class="btn btn-default" />
+                <input type="submit" value="Editar" class="btn btn-outline-info" />
                 <a class="text-primary" asp-action="Index">Voltar para lista.</a>
             </div>
         </form>
