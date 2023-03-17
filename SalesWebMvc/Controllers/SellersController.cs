@@ -38,13 +38,7 @@ namespace SalesWebMvc.Controllers
         [HttpPost] //ação de post e não de Get
         [ValidateAntiForgeryToken] //contra ataques CRRS
         public IActionResult Create(Seller seller)
-        {
-            if (!ModelState.IsValid)
-            {
-                var departaments = _departamentService.FindAll();
-                var viewModel = new SellerFormViewModel { Seller = seller, Departaments = departaments };
-                return View(viewModel);
-            }
+        {            
             _selerService.Insert(seller);
             return RedirectToAction(nameof(Index));
         }
@@ -117,13 +111,7 @@ namespace SalesWebMvc.Controllers
                 return RedirectToAction(nameof(Error), new { message = "Id NÃO CORRESPONDE AO VENDEDOR(A)!" });
             }
             try
-            {
-                if (!ModelState.IsValid)
-                {
-                    var departaments = _departamentService.FindAll();
-                    var viewModel = new SellerFormViewModel { Seller = seller, Departaments = departaments };
-                    return View(viewModel);
-                }
+            {               
                 _selerService.Update(seller);
                 return RedirectToAction(nameof(Index));
             }
