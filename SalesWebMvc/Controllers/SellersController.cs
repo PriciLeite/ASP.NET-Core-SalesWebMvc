@@ -1,133 +1,124 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 using SalesWebMvc.Models;
 using SalesWebMvc.Models.ViewModels;
 using SalesWebMvc.Services;
-using System.Security.Cryptography.X509Certificates;
 using SalesWebMvc.Services.Exceptions;
-using System.Diagnostics;
-using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 
 namespace SalesWebMvc.Controllers
 {
     public class SellersController : Controller
     {
-        private readonly SellerService _selerService;
+        private readonly SellerService _sellerService;
         private readonly DepartamentService _departamentService;
 
-
-        public SellersController(SellerService selerService, DepartamentService departamentService)
+        public SellersController(SellerService sellerService, DepartamentService departmentService)
         {
-            _selerService = selerService;
-            _departamentService = departamentService;
+            _sellerService = sellerService;
+            _departamentService = departmentService;
         }
 
-
-        public IActionResult Index()            //chamando o controlador.
+        public async Task<IActionResult> Index()
         {
-            var list = _selerService.FindAll(); //Atribuindo o serviço para list.
-            return View(list);                  // Enviando a list para a View.
+            var list = await _sellerService.FindAllAsync();
+            return View(list);
         }
 
-        public IActionResult Create()
+        public async Task<IActionResult> Create()
         {
-            var departaments = _departamentService.FindAll();   //buscar os departamentos do DepartamentService
+            var departaments = await _departamentService.FindAllAsync();
             var viewModel = new SellerFormViewModel { Departaments = departaments };
             return View(viewModel);
         }
 
-        [HttpPost] //ação de post e não de Get
-        [ValidateAntiForgeryToken] //contra ataques CRRS
-        public IActionResult Create(Seller seller)
-        {            
-            _selerService.Insert(seller);
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Seller seller)
+        {
+            await _sellerService.InsertAsync(seller);
             return RedirectToAction(nameof(Index));
         }
 
-
-        public IActionResult Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new {message = "Id NÃO FORNECIDO!"});
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
-            var obj = _selerService.FindbyId(id.Value); //pega o obj.
+
+            var obj = await _sellerService.FindByIdAsync(id.Value);
             if (obj == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id INEXISTENTE!" });
-
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
+
             return View(obj);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            _selerService.Remove(id);
+            await _sellerService.RemoveAsync(id);
             return RedirectToAction(nameof(Index));
         }
 
-        public IActionResult Details(int? id)
+        public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id NÃO FORNECIDO!" });
-
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
-            var obj = _selerService.FindbyId(id.Value); //pega o obj.
+
+            var obj = await _sellerService.FindByIdAsync(id.Value);
             if (obj == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id INEXISTENTE!" });
-
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
+
             return View(obj);
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id NÃO FORNECIDO!" });
-
+                return RedirectToAction(nameof(Error), new { message = "Id not provided" });
             }
-            var obj = _selerService.FindbyId(id.Value);
+
+            var obj = await _sellerService.FindByIdAsync(id.Value);
             if (obj == null)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id INEXISTENTE!" });
-
+                return RedirectToAction(nameof(Error), new { message = "Id not found" });
             }
-            List<Departament> departaments = _departamentService.FindAll();
-            SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departaments = departaments };
 
+            List<Departament> departaments = await _departamentService.FindAllAsync();
+            SellerFormViewModel viewModel = new SellerFormViewModel { Seller = obj, Departaments = departaments };
             return View(viewModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int? id, Seller seller)
+        public async Task<IActionResult> Edit(int id, Seller seller)
         {
             if (id != seller.Id)
             {
-                return RedirectToAction(nameof(Error), new { message = "Id NÃO CORRESPONDE AO VENDEDOR(A)!" });
+                return RedirectToAction(nameof(Error), new { message = "Id mismatch" });
             }
             try
-            {               
-                _selerService.Update(seller);
+            {
+                await _sellerService.UpdateAsync(seller);
                 return RedirectToAction(nameof(Index));
             }
-            catch (NotFoundException e)
-            {
-                return RedirectToAction(nameof(Error), new {message = e.Message });
-
-            }
-            catch (DbConcurrencyException e)
+            catch (ApplicationException e)
             {
                 return RedirectToAction(nameof(Error), new { message = e.Message });
-
             }
-        
         }
-        
 
         public IActionResult Error(string message)
         {
@@ -138,13 +129,5 @@ namespace SalesWebMvc.Controllers
             };
             return View(viewModel);
         }
-
-
-
-    
-    
-    
     }
-
-
 }

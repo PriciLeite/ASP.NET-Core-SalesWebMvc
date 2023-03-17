@@ -25,8 +25,8 @@ builder.Services.AddScoped<DepartamentService>();
 
 var app = builder.Build();
 app.Services.CreateScope().ServiceProvider.GetRequiredService<SeedingService>().Seed();
-app.Services.CreateScope().ServiceProvider.GetRequiredService<SellerService>().FindAll();
-app.Services.CreateScope().ServiceProvider.GetRequiredService<DepartamentService>().FindAll();
+Task<List<SalesWebMvc.Models.Seller>> sellers = app.Services.CreateScope().ServiceProvider.GetRequiredService<SellerService>().FindAllAsync();
+Task<List<SalesWebMvc.Models.Departament>> departaments = app.Services.CreateScope().ServiceProvider.GetRequiredService<DepartamentService>().FindAllAsync();
 
 
 // Configure the HTTP request pipeline.
