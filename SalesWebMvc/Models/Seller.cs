@@ -2,6 +2,7 @@
 using SalesWebMvc.Models;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 using System.Linq;
 
@@ -9,7 +10,7 @@ namespace SalesWebMvc.Models
 {
     public class Seller
     {
-
+        [Key]
         public int Id { get; set; }
 
         [Display(Name = "Nome")]
@@ -23,25 +24,28 @@ namespace SalesWebMvc.Models
         [EmailAddress(ErrorMessage = "Enter a valid email")]
         public string Email { get; set; }
 
-        [Display(Name= "Aniversário")]
+        [Display(Name = "Aniversário")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime BirthDate { get; set; }
 
         [Display(Name = "Salário")]
         [Required(ErrorMessage = "{0} required")]
-        [DisplayFormat(DataFormatString ="{0:F2}")]
+        [DisplayFormat(DataFormatString = "{0:F2}")]
         [Range(100.0, 50000.0, ErrorMessage = "{0} must be from {1} to {2}")]
         public double BaseSalary { get; set; }
 
         [Display(Name = "Departamento")]
         [Required(ErrorMessage = "{0} required")]
+
         public Departament Departament { get; set; }
 
         [Display(Name = "Departamento")]
         [Required(ErrorMessage = "{0} required")]
         public int DepartamentId { get; set; }
-        public ICollection<SalesRecord> Sales { get; set; } = new List<SalesRecord>();
+
+        [InverseProperty(nameof(Seller))]
+        public  ICollection<SalesRecord> SalesRecord { get; set; } = new List<SalesRecord>();
 
 
         public Seller()
@@ -62,22 +66,19 @@ namespace SalesWebMvc.Models
 
         public void AddSales(SalesRecord sr)
         {
-            Sales.Add(sr);
+            SalesRecord.Add(sr);
         }
 
         public void RemoveSales(SalesRecord sr)
         {
-            Sales.Remove(sr);
+            SalesRecord.Remove(sr);
         }
 
         public double TotalSales(DateTime initial, DateTime final)
         {
-            return Sales.Where(sr => sr.Date >= initial && sr.Date <= final).Sum(sr => sr.Amount);
+            return SalesRecord.Where(sr => sr.Date >= initial && sr.Date <= final).Sum(sr => sr.Amount);
         }
 
-
-
     }
-
 
 }

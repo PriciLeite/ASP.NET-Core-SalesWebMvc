@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SalesWebMvc.Models
 {
@@ -9,6 +9,8 @@ namespace SalesWebMvc.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
+
+        [InverseProperty(nameof(Departament))]
         public ICollection<Seller> Sellers { get; set; } = new List<Seller>();
 
 
