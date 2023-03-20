@@ -1,6 +1,7 @@
 ﻿using SalesWebMvc.Data;
 using SalesWebMvc.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Text.RegularExpressions;
 
 namespace SalesWebMvc.Services
 {
@@ -48,15 +49,14 @@ namespace SalesWebMvc.Services
             }
             return await result
                 .Include(x => x.Seller)
-                .Include(x => x.Seller.Departament) //DonwCasting     
+                .Include(x => x.Seller.Departament)
                 .OrderByDescending(x => x.Date)
                 .GroupBy(x => x.Seller.Departament)
                 .ToListAsync();
         }
-   
-    
     }
-
-
 }
+
+   
+
 

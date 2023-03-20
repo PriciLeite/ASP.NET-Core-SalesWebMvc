@@ -16,55 +16,63 @@
         <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
     </environment>
 </head>
-<body>    
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary" mb-3">
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" mb-3">
         <div class="container-fluid">
-            <a class="navbar-brand mb-0 h1" asp-area="" asp-controller="Home" asp-action="Index">Sistema de Gestão</a>
+            <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="Index">Sistema de Gestão</a>
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+            
             <hr />
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav me-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-area="" asp-controller="Sellers" asp-action="Index">Vendedor(a)</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-area="" asp-controller="Departaments" asp-action="Index">Departamento</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-area="" asp-controller="SalesRecords" asp-action="Index">Vendas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Privacy">Contato</a>
-                    </li>
+            <div class="row"
+                <div class="breadcrumb ">
+                    <ul class="navbar-nav me-auto">
 
-                </ul>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">Página Inicial</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Sellers" asp-action="Index">Vendedor(a)</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Departaments" asp-action="Index">Departamento</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="SalesRecords" asp-action="Index">Vendas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Privacy">Sobre</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Privacy">Contato</a>
+                        </li>
+
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+
+
+    <div class="align-content-end">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
+
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="~/js/site.js" asp-append-version="true"></script>
+        @await RenderSectionAsync("Scripts", required: false)
     </div>
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - SistemaControledeVendas - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - Sistema de Gestão - <a asp-area="" asp-controller="Home" asp-action="Privacy">TodosOsDireitosReservados</a>
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
