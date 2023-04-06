@@ -2,6 +2,7 @@
 using SalesWebMvc.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SalesWebMvc.Services
 {
@@ -36,6 +37,8 @@ namespace SalesWebMvc.Services
         }
 
 
+
+
         public async Task<List<IGrouping<Departament, SalesRecord>>> FindByDateGroupingAsync(DateTime? minDate, DateTime? maxDate)
         {
             var result = from obj in _context.SalesRecord select obj;
@@ -47,13 +50,19 @@ namespace SalesWebMvc.Services
             {
                 result = result.Where(x => x.Date <= maxDate.Value);
             }
-            return await result
+            var salesRecords = await result
                 .Include(x => x.Seller)
                 .Include(x => x.Seller.Departament)
                 .OrderByDescending(x => x.Date)
-                .GroupBy(x => x.Seller.Departament)
                 .ToListAsync();
+
+            return salesRecords.GroupBy(x => x.Seller.Departament).ToList();
         }
+
+
+
+
+
     }
 }
 

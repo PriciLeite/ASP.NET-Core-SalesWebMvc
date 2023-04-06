@@ -8,9 +8,17 @@ namespace SalesWebMvc.Models
     {
         [Key]
         public int Id { get; set; }
+
+        [Display(Name = "Data")]
         public DateTime Date { get; set; }
+
+        [Display(Name = "Quantidade")]
         public double Amount { get; set; }
-        public SaleStatus Status { get; set; }                
+
+        public SaleStatus Status { get; set; }
+
+
+        [Display(Name = "Vendedor")]
         public Seller Seller { get; set; }
 
        
