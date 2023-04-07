@@ -1,4 +1,4 @@
-# SalesControlSystem
+# SalesWebMvc
 Criando um Sistema de Gestão Web-Mvc / Sellers / Department / SalesRecord.
 
 ### Configurações:
