@@ -13,7 +13,9 @@ builder.Services.AddDbContext<SalesWebMvcContext>(options =>
     ServerVersion.AutoDetect(builder.Configuration.GetConnectionString("SalesWebMvcContext")),
     builder => builder.MigrationsAssembly("SalesWebMvc")));
 
-
+/*var connection = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+           options.UseSqlServer(connection)); */
 
 
 // Add services to the container.
