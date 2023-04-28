@@ -4,6 +4,7 @@ Criando um Sistema de Gestão Web-Mvc / Sellers / Department / SalesRecord.
 ### Configurações:
 - ASP.NET Core - Mvc
 - Dotnet 6.0
+- Database: MySql
 - Biblíoteca: https://bootswatch.com/
 
 ## Dê um Play no Vídeo >>>
