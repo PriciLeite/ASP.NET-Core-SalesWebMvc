@@ -1,23 +1,195 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<hr />
-<hr />
-<hr />
-<hr />
-<hr />
-<hr />
-<hr />
-<hr />
-<div class="text-center">
-    <thead>
-        <tr>
-            <h1 class="display-4">Bem-Vindo!</h1>
-            @DateTime.Now.DayOfWeek
-            <br />
-            @DateTime.Now
-        </tr>
-    </thead>
-</div>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] -Cafeteria Croissant</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-morph.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/SalesWebCafeteria.styles.css" asp-append-version="true" />
+    <style>
+        body{
+            background-color: #2c2333;
+            font-family: 'Century Schoolbook';
+            text-decoration-color;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'poppins', sans-serif;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+            background: #1da583;
+            background: url('"C:\Users\Prici\Downloads\AAA.jpg"')no-repeat;
+            background-position: center;
+            background-size: cover;
+        }
 
 
+
+        .form-box {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            min-height: 80vh;
+            background: transparent;
+            border: 2px solid rgb(255,255,255,0.5);
+            border-radius: 20px;
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        h2 {
+            font-size: 2em;
+            color: rgb(12, 211, 211);
+            text-align: center;
+            text-decoration: underline;
+        }
+
+        .inputbox {
+            position: relative;
+            margin: 30px 0;
+            width: 310px;
+            border-bottom: 2px solid #1fcaca;
+        }
+
+            .inputbox label {
+                position: absolute;
+                top: 50%;
+                left: 5px;
+                transform: translateY(-50%);
+                color: rgb(29, 143, 128);
+                font-size: 1em;
+                pointer-events: none;
+                transition: .5s;
+            }
+
+        input:focus ~ label,
+        input:valid ~ label {
+            top: -5px;
+        }
+
+        .inputbox input {
+            width: 100%;
+            height: 50px;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            padding: 0 35px 0 5px;
+            color: rgb(22, 184, 184);
+        }
+
+        .inputbox ion-icon {
+            position: absolute;
+            right: 8px;
+            color: rgb(38, 161, 161);
+            font-size: 1.2em;
+            top: 1em;
+        }
+
+        .forget {
+            margin: -15px 0 15px;
+            font-size: .9em;
+            color: rgb(22, 184, 184);
+            display: flex;
+            justify-content: center;
+        }
+
+            .forget label input {
+                margin-right: 3px;
+            }
+
+            .forget label a {
+                color: rgb(22, 184, 184);
+                text-decoration: nome;
+            }
+
+                .forget label a:hover {
+                    text-decoration: underline;
+                }
+
+        button {
+            width: 100%;
+            height: 40px;
+            border-radius: 40px;
+            color: rgb(22, 184, 184);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 600;
+        }
+
+        .register {
+            font-size: .9em;
+            color: rgb(22, 184, 184);
+            text-align: center;
+            margin: 25px 0 10px;
+        }
+
+            .register p a {
+                text-decoration: none;
+                color: rgb(22, 184, 184);
+                font-weight: 600;
+            }
+
+                .register p a:hover {
+                    text-decoration: underline;
+                }
+
+    </style>
+</head>
+
+<hr />
+
+<body>   
+
+    <section>
+        <div class="form-box">
+            <div class="form-value">
+                <form action="">
+                    <h2>Login</h2>
+                    <div class="inputbox">
+                        <ion-icon name="mail-outline"></ion-icon>
+                        <input type="email" required>
+                        <label for="">Email</label>
+                    </div>
+
+
+                    <div class="inputbox">
+                        <ion-icon name="lock-closed-outline"></ion-icon>
+                        <input type="password" required>
+                        <label for="">Password</label>
+                    </div>
+
+                    <div class="forget">
+                        <label for=""><input type="checkbox">Remember Me <a href="#">Forget password</a></label>
+
+                    </div>
+
+                    <button>Log in</button>
+                    <div class="register">
+                        <p>Dont't have a account <a href="#">Register</a></p>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </section>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
