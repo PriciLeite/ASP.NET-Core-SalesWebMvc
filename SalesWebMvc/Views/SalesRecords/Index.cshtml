@@ -1,55 +1,57 @@
 ﻿@{
-    ViewData["Title"] = "Sales Records";
+    ViewData["Title"] = "Consultar Vendas";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2 class="alert">@ViewData["Title"]</h2>
 <div class="row">
     <div class="col-md-6">
         <form class="form-horizontal" asp-action="SimpleSearch">
             <fieldset>
-                <legend>Simple search</legend>
+                <legend>Consulta Simples</legend>
                 <div class="form-group">
-                    <label for="minDate" class="col-lg-2 control-label">Min Date</label>
+                    <label for="minDate" class="col-lg-2 control-label">Mínima</label>
                     <div class="col-lg-10">
                         <input type="date" name="minDate" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="maxDate" class="col-lg-2 control-label">Max Date</label>
+                    <label for="maxDate" class="col-lg-2 control-label">Máxima</label>
                     <div class="col-lg-10">
                         <input type="date" name="maxDate" class="form-control" />
                     </div>
                 </div>
+                <br />
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
                 </div>
             </fieldset>
         </form>
     </div>
 </div>
-
+<br />
 <div class="row">
     <div class="col-md-6">
-        <form class="form-horizontal" asp-action="GroupingSearch">
+        <form class="form-horizontal" asp-action="GroupingSearch">           
             <fieldset>
-                <legend>Grouping search</legend>
+                <legend>Consulta Agrupada</legend>
                 <div class="form-group">
-                    <label for="minDate" class="col-lg-2 control-label">Min Date</label>
+                    <label for="minDate" class="col-lg-2 control-label">Mínima</label>
                     <div class="col-lg-10">
                         <input type="date" name="minDate" class="form-control" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="maxDate" class="col-lg-2 control-label">Max Date</label>
+                    <label for="maxDate" class="col-lg-2 control-label">Máxima</label>
                     <div class="col-lg-10">
                         <input type="date" name="maxDate" class="form-control" />
                     </div>
                 </div>
+                <br />
                 <div class="form-group">
                     <div class="col-lg-10 col-lg-offset-2">
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary">Buscar</button>
                     </div>
                 </div>
             </fieldset>
