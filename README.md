@@ -8,8 +8,10 @@
 ---- Estes vendedores exercem na aplicação um relacionamento (Entidade relacionamento de 1:n) para com as suas respectivas vendas. 
 - As vendas podem ser consultadas de forma Simplificada e Agrupada definidas de acordo com seu dia/mês/ano. </br>
 ---- Os Parâmetros definidos para vendas são: Id, data, departamente, quantidade e status da venda. 
-- É possível cadastrar novos departamentos os quais representará os montantes de vendas individualizada por departamento. 
-
+- É possível cadastrar novos departamentos os quais representará os montantes de vendas individualizada por departamento. <br/>
+   -> Consulta Simples; <br/>
+   -> Consulta Agrupada;
+  
 ### Configurações do projeto:
 - Usando ASP.NET Core MVC
 - Dotnet 6.0
